@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="css/register.css"> <!-- Reusing the same CSS file for consistency -->
+</head>
+<body>
+  <div class="header-text">
+    <p>Welcome Back! Please Log In</p>
+  </div>
+  <div class="container">
+    <div class="logo">
+      <img src="logo.png" alt="Logo">
+    </div>
+    <h1>Login</h1>
+    <form action="/login" method="post">
+      <input type="text" id="username" name="username" placeholder="Username" required>
+      <input type="password" id="password" name="password" placeholder="Password" required>
+      <button type="submit">Login</button>
+      <label for="remember-me" class="remember-me">
+        <input type="checkbox" id="remember-me" name="remember-me"> Remember me
+      </label>
+    </form>
+    <p>Not registered yet? <a href="/register">Register</a></p>
+  </div>
+</body>
+</html>

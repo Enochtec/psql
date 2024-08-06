@@ -1,0 +1,139 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #eeeef1;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .header-text {
+    text-align: center;
+    margin-top: 50px; 
+    margin-bottom: 30px; 
+    animation: fadeIn 2s ease-in-out;
+  }
+  
+  .header-text p {
+    font-size: 24px; 
+    color: #333;
+    margin: 0;
+    animation: textAnimation 2s ease-in-out;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes textAnimation {
+    0% {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    50% {
+      opacity: 1;
+      transform: translateY(5px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .container {
+    background-color: rgb(249, 248, 252);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 90%; /* Adjusted width to be responsive */
+    max-width: 400px;
+    text-align: center;
+    margin: 0 auto; /* Center the container horizontally */
+    margin-top: 30px; /* Margin for space above the container */
+  }
+  
+  .logo img {
+    width: 100px;
+    height: 100px; /* Ensure logo is a square */
+    border-radius: 50%; /* Make the logo circular */
+    margin-bottom: 20px;
+  }
+  
+  h1 {
+    margin-bottom: 20px;
+    font-size: 24px;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  input, select, button {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+  
+  input::placeholder, select::placeholder {
+    color: #888;
+  }
+  
+  button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  button:hover {
+    background-color: #218838;
+  }
+  
+  .gender {
+    margin-bottom: 15px;
+    text-align: left; /* Align gender options to the left */
+  }
+  
+  .gender h4 {
+    margin-bottom: 10px;
+  }
+  
+  .gender label {
+    display: block;
+    margin-bottom: 2px;
+  }
+  
+  .remember-me {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  p {
+    margin-top: 10px;
+    font-size: 14px;
+  }
+  
+  p a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  p a:hover {
+    text-decoration: underline;
+  }
+  
+  #remember-me {
+    margin-right: 10px;
+  }
+  
