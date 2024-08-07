@@ -32,7 +32,7 @@ app.post('/register', async (req, res) => {
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
     await knex('users').insert({ username, password: hashedPassword, email, phone_number });
-    res.redirect('/login.html');
+    res.redirect('/public/login.html');
   } catch (err) {
     res.status(400).send(`Error: ${err.message}`);
   }
@@ -44,7 +44,7 @@ app.post('/login', async (req, res) => {
   try {
     const user = await knex('users').where({ username }).first();
     if (user && await bcrypt.compare(password, user.password)) {
-      res.redirect(`/dashboard.html?username=${encodeURIComponent(username)}`);
+      res.redirect(`/public/dashboard.html?username=${encodeURIComponent(username)}`);
     } else {
       res.status(400).send('Invalid credentials');
     }
@@ -54,7 +54,7 @@ app.post('/login', async (req, res) => {
 });
 
 // Dashboard route
-app.get('/dashboard.html', (req, res) => {
+app.get('/public/dashboard.html', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'dashboard.html'));
 });
 
