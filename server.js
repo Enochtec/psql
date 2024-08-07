@@ -29,7 +29,7 @@ app.get('/login', (req, res) => {
 app.post('/register', (req, res) => {
   const { username, password, email, phone_number } = req.body;
   knex('users').insert({ username, password, email, phone_number })
-    .then(() => res.redirect('/login'))
+    .then(() => res.redirect('/login.html'))
     .catch(err => res.status(400).send(`Error: ${err.message}`));
 });
 
