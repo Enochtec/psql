@@ -29,7 +29,7 @@ app.get('/login', (req, res) => {
 app.post('/register', (req, res) => {
   const { username, password, email, phone_number } = req.body;
   knex('users').insert({ username, password, email, phone_number })
-    .then(() => res.redirect('/login'))
+    .then(() => res.redirect('./login'))
     .catch(err => res.status(400).send(`Error: ${err.message}`));
 });
 
@@ -39,7 +39,7 @@ app.post('/login', (req, res) => {
   knex('users').where({ username, password }).first()
     .then(user => {
       if (user) {
-        res.redirect(`/dashboard?username=${encodeURIComponent(username)}`);
+        res.redirect(`./dashboard?username=${encodeURIComponent(username)}`);
       } else {
         res.status(400).send('Invalid credentials');
       }
