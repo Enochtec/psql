@@ -2,9 +2,8 @@ require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const knex = require('knex')(require('./knexfile').development);
-const bcrypt = require('bcrypt'); // For password hashing
-const path = require('path');
 const app = express();
+const path = require('path');
 const PORT = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
@@ -27,34 +26,29 @@ app.get('/login', (req, res) => {
 });
 
 // Register route
-app.post('/register', async (req, res) => {
+app.post('/register', (req, res) => {
   const { username, password, email, phone_number } = req.body;
-  try {
-    const hashedPassword = await bcrypt.hash(password, 10);
-    await knex('users').insert({ username, password: hashedPassword, email, phone_number });
-    res.redirect('/public/login.html');
-  } catch (err) {
-    res.status(400).send(`Error: ${err.message}`);
-  }
+  knex('users').insert({ username, password, email, phone_number })
+    .then(() => res.redirect('/login'))
+    .catch(err => res.status(400).send(`Error: ${err.message}`));
 });
 
 // Login route
-app.post('/login', async (req, res) => {
+app.post('/login', (req, res) => {
   const { username, password } = req.body;
-  try {
-    const user = await knex('users').where({ username }).first();
-    if (user && await bcrypt.compare(password, user.password)) {
-      res.redirect(`/public/dashboard.html?username=${encodeURIComponent(username)}`);
-    } else {
-      res.status(400).send('Invalid credentials');
-    }
-  } catch (err) {
-    res.status(400).send(`Error: ${err.message}`);
-  }
+  knex('users').where({ username, password }).first()
+    .then(user => {
+      if (user) {
+        res.redirect(`/dashboard?username=${encodeURIComponent(username)}`);
+      } else {
+        res.status(400).send('Invalid credentials');
+      }
+    })
+    .catch(err => res.status(400).send(`Error: ${err.message}`));
 });
 
 // Dashboard route
-app.get('/public/dashboard.html', (req, res) => {
+app.get('/dashboard', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'dashboard.html'));
 });
 
