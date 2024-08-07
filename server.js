@@ -39,7 +39,7 @@ app.post('/login', (req, res) => {
   knex('users').where({ username, password }).first()
     .then(user => {
       if (user) {
-        res.redirect(`./dashboard?username=${encodeURIComponent(username)}`);
+        res.redirect(`/dashboard?username=${encodeURIComponent(username)}`);
       } else {
         res.status(400).send('Invalid credentials');
       }
