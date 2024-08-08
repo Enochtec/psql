@@ -53,6 +53,7 @@ body {
     transition: margin-left .5s;
     padding: 16px;
     margin-top: 50px;
+   
   }
   
   @media screen and (max-height: 450px) {
