@@ -4,11 +4,12 @@ const bodyParser = require('body-parser');
 const knex = require('knex')(require('./knexfile').development);
 const app = express();
 const path = require('path');
+const cors = require('cors');
 const PORT = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
+app.use(cors());
 // Serve static files
 app.use(express.static('public'));
 
