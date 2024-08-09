@@ -25,11 +25,14 @@ app.get('/login', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'login.html'));
 });
 
-// Register route
 app.post('/register', (req, res) => {
   const { username, password, email, phone_number } = req.body;
+  
+  // Hash the password before storing it (recommended)
+  // const hashedPassword = someHashingFunction(password);
+
   knex('users').insert({ username, password, email, phone_number })
-    .then(() => res.redirect('./login'))
+    .then(() => res.redirect('/login.html')) // Ensure this path points to the correct location
     .catch(err => res.status(400).send(`Error: ${err.message}`));
 });
 
